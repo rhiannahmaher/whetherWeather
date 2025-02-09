@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  {% include "header.njk" %}
+</head>
+
+<body>
+
+  {% include "nav.njk" %}
+
+  <main id="container" class="columns is-centered is-multiline box">
+
+    <div class="column is-12 has-text-centered has-text-black">
+      <p id="dashboard" class="is-size-1">
+        Dashboard
+      </p>
+    </div>
+
+    <div id="cardContainer" class="columns is-centered is-multiline">
+      <!-- 9 city cards are created and pulled in here -->
+    </div>
+
+  </main>
+
+  <footer>
+      {% include "footer.njk" %}
+  </footer>
+  
+</body>
+</html>

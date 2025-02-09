@@ -1,0 +1,90 @@
+/*
+General page CSS styling 
+*/
+
+html {
+  background-color: deepskyblue;
+}
+
+body {
+  font-family: "Concert One", sans-serif;
+}
+
+footer {
+  background-color: deepskyblue;
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+  margin-top: 30px;
+}
+
+em {
+  font-size:x-small;
+}
+
+.box {
+  background-color: whitesmoke;
+  font-weight: bold;
+}
+
+#summary-box {
+  background-color: white;
+}
+
+#day-of-week {
+  font-size: x-large;
+  font-weight: bold;
+  color: orange;
+}
+
+#weekly-temp {
+    color:  orange;
+    font-weight: bold;
+}
+
+.content, #dashboard, #today{
+  color: orange;
+}
+
+#now, #focus-box {
+  background-color: lightblue;
+  margin: 50px;
+  color: black;
+}
+
+#focus-box {
+
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+#current-temp, #current-wind, #temp-wind {
+  display: inline;
+}
+
+#footer-image {
+  width: auto;
+}
+
+#settings {
+  background-color: whitesmoke;
+  color: orange;
+  margin-top: 20px;
+}
+
+#cityTable {
+  background-color: whitesmoke;
+  text-align: center;
+  display: flex; /* To align the table in center */
+  justify-content: center; 
+  color: orange;
+}
+
+#heading-box {
+  background-color: white;
+}
+
+#weatherIcon-box {
+  margin-right: 50px;
+  margin-left: 50px;
+}

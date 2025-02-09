@@ -1,0 +1,153 @@
+<!-- Layout Template that is used for each City Focus page -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="120"> <!-- Page refreshes every 2 minutes -->
+
+<title>(Whether)Weather</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One"> <!-- Imported Google Font -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" /> <!-- Imported Bulma stylesheet -->
+<link rel="stylesheet" href="/css/stylesheet.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/card.css">
+
+<script src="/js/bulma.js"></script>
+<script src="/js/weather_data.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/city_focus.js"></script>
+<script src="/js/settings.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+<script>
+  console.log(dayjs().format('YYYY-MM-DDTHH:mm:ss'));
+</script>
+
+
+
+  
+
+  
+
+</head>
+
+<body>
+  <!-- Navigation Partial -->
+
+<nav class="navbar">
+
+  <div class="navbar-brand">
+
+    <a class="navbar-item" href="#">
+      <img src="/images/logo.png" alt="Logo"/>
+    </a>
+    <span class="navbar-burger" data-target="navbarMenu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </span>
+  </div>
+
+  <div id="navbarMenu" class="navbar-menu">
+      
+    <div class="navbar-end">
+      <a href="/pages/amsterdam?city={city.name}" class="navbar-item has-text-white">
+        City Focus
+      </a>
+      <a href="/index" class="navbar-item has-text-white">
+        Dashboard
+      </a>
+      <a href="/pages/settings" class="navbar-item has-text-white">
+        Settings
+      </a>
+    </div>
+  </div>
+
+</nav>
+
+  <main class="box">
+
+    <div id="heading-box" class="box">
+
+      <div class="columns is-centered is-multiline has-text-centered  ">
+
+        <div class="column is-12 has-text-centered has-text-black">
+          
+<p class="content is-size-1">
+  Berlin
+</p> <!-- City name is called here on each city page -->
+        </div>
+
+        <div class="column is-12 has-text-black">
+          <p class="is-size-2">
+            <span id="today"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+
+      <div class="columns is-centered is-multiline has-text-centered">
+        <div id="weatherIcon-box" class="column is-3">
+          <figure class="image is-inline-block">
+            <img id="weatherIcon"></img>
+          </figure>
+        </div>
+
+      <div id="now" class="column is-3">
+        <p class="is-size-3 mt-6 mb-6">
+          Right Now:
+        </p>
+        <span id="currentTemp" class="is-size-4 has-text-left mr-6"></span>
+        <span id="currentWind" class="is-size-4 has-text-right ml-6"></span>
+      </div>
+    </div>
+
+    <div class="columns is-centered is-multiline has-text-centered">
+    
+      <div id="focus-box" class="column is-3">
+        <p class="is-size-3 mb-6">
+          Max Temperature:
+        </p>
+        <span id="maxTemp" class="is-size-4"></span>
+      </div>
+
+      <div id="focus-box" class="column is-3">
+        <p class="is-size-3 mb-6">
+          Max Wind Strength:
+        </p>
+        <span id="maxWindStrength" class="is-size-4"></span>
+      </div>
+    </div>
+
+    <div id="weeklyForecast" class="columns is-multiline" >
+      <!-- 7 Day summary appears here-->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+
+  <div class="has-text-centered">
+    <p>
+      (Whether)Weather - Keeping You Updated <em>*In 9 Selected Cities*</em>
+    </p>
+    <img id="footer-image" class="image is-inline" src="/images/logo.png" alt="Logo"> 
+ </div>
+ 
+</div>
+  </footer>
+
+</body>
+</html>

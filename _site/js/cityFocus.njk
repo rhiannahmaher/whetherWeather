@@ -1,0 +1,85 @@
+ document.addEventListener("DOMContentLoaded", () => {
+
+     /*  const urlParams = new URLSearchParams(window.location.search);
+       const currentCity = urlParams.get('city');
+
+       console.log(currentCity);
+
+       urlParams would not work so switched to fplit fuction#
+
+       */
+
+       const urlParams = window.location.pathname.split('/');
+       
+        const currentCity = urlParams[2];
+
+
+        const dailyData = weatherData[currentCity + "_daily"].daily;
+        const dailyUnits = weatherData[currentCity + "_daily"].daily_units;
+
+        const hourlyData = weatherData[currentCity + "_hourly"].hourly;
+        const hourlyUnits = weatherData[currentCity + "_hourly"].hourly_units;
+
+  // Daily Data
+
+    const today = document.getElementById("today");
+    const maxTemp = document.getElementById("maxTemp");
+    const maxWindStrength = document.getElementById("maxWindStrength");
+    const weatherIcon = document.getElementById("weatherIcon");
+
+    // Hourly Data
+
+    const now = new Date();
+    const currentHour = now.getHours(); // Fetches current hour
+
+    let currentTemp = document.getElementById("currentTemp");
+    let currentWind = document.getElementById("currentWind");
+    
+    // Weekly Summary
+
+    const container = document.getElementById('weeklyForecast');
+    const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    dayOfWeek.forEach((day, index) => {
+        // Ensure data exists for this day index
+        if (dailyData.time[index] !== undefined) {
+
+            const minTemp = dailyData.temperature_2m_min[index];
+            const maxTemp = dailyData.temperature_2m_max[index];
+            const weatherCode = dailyData.weather_code[index];
+            const weatherIcon = getWeatherIcon(weatherCode); // Matches the weather code to the icon PNG
+
+            const weeklySummary = document.createElement('div');
+            weeklySummary.className = 'column is-one-seventh'; // Assuming Bulma's columns and you want equal spacing
+            weeklySummary.innerHTML = `
+                <div id="summary-box" class="box has-text-centered">
+                    <p id="day-of-week" class="has-text-weight-semibold">${day}</p>
+                    <figure class="image is-128x128 is-inline-block">
+                        <img src="${weatherIcon}" alt="Weather icon">
+                    </figure>
+                    <div id="weekly-temp" class="columns">
+    <div class="column has-text-left">
+        <p>${minTemp + dailyUnits.temperature_2m_min}</p>
+    </div>
+    <div class="column has-text-right">
+        <p>${maxTemp + dailyUnits.temperature_2m_max}</p>
+    </div>
+</div>
+                </div>
+            `;
+            container.appendChild(weeklySummary); //reference for appendChild function
+        } 
+    });
+
+    today.innerHTML = dailyData.time[0];
+    maxTemp.innerHTML = dailyData.temperature_2m_max[0] + dailyUnits.temperature_2m_max;
+    maxWindStrength.innerHTML = dailyData.wind_speed_10m_max[0] + dailyUnits.wind_speed_10m_max;
+    weatherIcon.src = getWeatherIcon(dailyData.weather_code[0])
+
+    currentTemp.innerHTML = hourlyData.temperature_2m[currentHour] + hourlyUnits.temperature_2m;
+    currentWind.innerHTML = hourlyData.wind_speed_10m[currentHour] + hourlyUnits.wind_speed_10m;
+
+
+
+
+        });

@@ -1,0 +1,27 @@
+/*
+CSS styling for navigation bar
+*/
+
+.navbar {
+  background-color: deepskyblue;
+  padding: 20px; 
+  height: 80px;
+}
+
+.navbar-burger {
+  background-color: deepskyblue;
+}
+
+.navbar-item {
+  font-size: 30px; 
+  background-color: deepskyblue;
+}
+
+.navbar-item img {
+  padding:  0;
+  max-height: 2.5rem;
+}
+
+.navbar-burger.is-active {
+  background-color: orange;
+}

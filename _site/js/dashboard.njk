@@ -1,0 +1,49 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const cardContainer = document.getElementById('cardContainer');
+    const cities = [
+        { name: "Amsterdam", key: "amsterdam" },
+        { name: "Berlin", key: "berlin" },
+        { name: "Copenhagen", key: "copenhagen"},
+        { name: "Cork", key: "cork" },
+        { name: "New York", key: "new_york" },
+        { name: "Paris", key: "paris" },
+        { name: "San Francisco", key: "san_francisco" },
+        { name: "Tromso", key: "tromso" },
+        { name: "Waterford", key: "waterford" },
+        // Add more cities as needed
+    ];
+
+    let cardsHTML = '';
+    cities.forEach((city, index) => {
+        const currentCityDaily = weatherData[city.key + "_daily"].daily;
+        const dailyUnits = weatherData[city.key + "_daily"].daily_units;
+        const maxTemp = currentCityDaily.temperature_2m_max[0];
+        const minTemp = currentCityDaily.temperature_2m_min[0];
+        const weatherCode = currentCityDaily.weather_code[0];
+        const weatherIcon = getWeatherIcon(weatherCode);
+
+        cardsHTML += `
+            <div class="column is-3">
+                <section class="card">
+                    <header class="card-header">
+                        <p id="city-${index + 1}-heading" class="card-header-title is-size-4 is-centered">${city.name}</p>
+                    </header>
+                    <div class="card-image">
+                        <figure>
+                            <img id="city-${index + 1}-icon" alt="Weather icon" src="${weatherIcon}">
+                        </figure>
+                    </div>
+                    <div class="card-content columns is-multiline is-size-2">
+                        <p id="city-${index + 1}-min-temp" class="column has-text-left">${minTemp}${dailyUnits.temperature_2m_min}</p>
+                        <p id="city-${index + 1}-max-temp" class="column has-text-right">${maxTemp}${dailyUnits.temperature_2m_max}</p>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="/pages/${city.key}?city=${city.name}" class="card-footer-item button">Focus</a>
+                    </footer>
+                </section>
+            </div>
+        `;
+    });
+
+    cardContainer.innerHTML = cardsHTML;
+});

@@ -1,0 +1,77 @@
+<!-- Layout Template that is used for each City Focus page -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  {% include "header.njk" %}
+</head>
+
+<body>
+  {% include "nav.njk" %}
+
+  <main class="box">
+
+    <div id="heading-box" class="box">
+
+      <div class="columns is-centered is-multiline has-text-centered  ">
+
+        <div class="column is-12 has-text-centered has-text-black">
+          {{ content | safe }} <!-- City name is called here on each city page -->
+        </div>
+
+        <div class="column is-12 has-text-black">
+          <p class="is-size-2">
+            <span id="today"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+
+      <div class="columns is-centered is-multiline has-text-centered">
+        <div id="weatherIcon-box" class="column is-3">
+          <figure class="image is-inline-block">
+            <img id="weatherIcon"></img>
+          </figure>
+        </div>
+
+      <div id="now" class="column is-3">
+        <p class="is-size-3 mt-6 mb-6">
+          Right Now:
+        </p>
+        <span id="currentTemp" class="is-size-4 has-text-left mr-6"></span>
+        <span id="currentWind" class="is-size-4 has-text-right ml-6"></span>
+      </div>
+    </div>
+
+    <div class="columns is-centered is-multiline has-text-centered">
+    
+      <div id="focus-box" class="column is-3">
+        <p class="is-size-3 mb-6">
+          Max Temperature:
+        </p>
+        <span id="maxTemp" class="is-size-4"></span>
+      </div>
+
+      <div id="focus-box" class="column is-3">
+        <p class="is-size-3 mb-6">
+          Max Wind Strength:
+        </p>
+        <span id="maxWindStrength" class="is-size-4"></span>
+      </div>
+    </div>
+
+    <div id="weeklyForecast" class="columns is-multiline" >
+      <!-- 7 Day summary appears here-->
+    </div>
+  </main>
+
+  <footer>
+    {% include "footer.njk" %}
+  </footer>
+
+</body>
+</html>

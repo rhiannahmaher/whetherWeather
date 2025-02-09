@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="has-background-primary" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="5"> <!-- Page refreshes every 5 seconds -->
+  <title>(Whether)Weather</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="/js/bulma.js"></script>
+  <script src="/js/weather_data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script>
+        console.log(dayjs().format('YYYY-MM-DDTHH:mm:ss'));
+    </script>
+
+ <script>
+        function getWeatherIcon(code) {
+  const codeToIcon = {
+    0: '/images/icons/sun.png',
+    1: '/images/icons/mainly-clear.png',
+    2: '/images/icons/partly-cloudy.png',
+    3: '/images/icons/cloudy.png',
+    45: '/images/icons/fog.png',
+    48: '/images/icons/fog-rime.png',
+    51: '/images/icons/drizzle-light.png',
+    53: '/images/icons/drizzle-moderate.png',
+    55: '/images/icons/drizzle-heavy.png',
+    56: '/images/icons/freezing-drizzle-light.png',
+    57: '/images/icons/freezing-drizzle-heavy.png',
+    61: '/images/icons/rain-light.png',
+    63: '/images/icons/rain-moderate.png',
+    65: '/images/icons/rain-heavy.png',
+    66: '/images/icons/freezing-rain-light.png',
+    67: '/images/icons/freezing-rain-heavy.png',
+    71: '/images/icons/snow-light.png',
+    80: '/images/icons/rain-light.png',
+    81: '/images/icons/rain-moderate',
+  };
+  return codeToIcon[code]; // Default icon if not mapped
+}
+
+    </script>
+
+
+    
+
+    
+
+   <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+         /*  const urlParams = new URLSearchParams(window.location.search);
+           const currentCity = urlParams.get('city');
+
+           console.log(currentCity);
+
+           urlParams would not work so switched to fplit fuction#
+
+           */
+
+           const urlParams = window.location.pathname.split('/');
+           console.log('urlParams');
+            const currentCity = urlParams[2];
+
+
+            const dailyData = weatherData[currentCity + "_daily"].daily;
+            const dailyUnits = weatherData[currentCity + "_daily"].daily_units;
+
+            const hourlyData = weatherData[currentCity + "_hourly"].hourly;
+            const hourlyUnits = weatherData[currentCity + "_hourly"].hourly_units;
+
+  // Daily Data
+
+    const today = document.getElementById("today");
+    const maxTemp = document.getElementById("maxTemp");
+    const maxWindStrength = document.getElementById("maxWindStrength");
+    const weatherIcon = document.getElementById("weatherIcon");
+
+    // Hourly Data
+
+    const now = new Date();
+    const currentHour = now.getHours(); // Fetches current hour
+
+    let currentTemp = document.getElementById("currentTemp");
+    let currentWind = document.getElementById("currentWind");
+    
+
+    const container = document.getElementById('weeklyForecast');
+    const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    dayOfWeek.forEach((day, index) => {
+        // Ensure data exists for this day index
+        if (dailyData.time[index] !== undefined) {
+            const minTemp = dailyData.temperature_2m_min[index];
+            const maxTemp = dailyData.temperature_2m_max[index];
+            const weatherCode = dailyData.weather_code[index];
+            const weatherIcon = getWeatherIcon(weatherCode); // Matches the weather code to the icon PNG
+
+            const weeklySummary = document.createElement('div');
+            weeklySummary.className = 'column is-one-seventh'; // Assuming Bulma's columns and you want equal spacing
+            weeklySummary.innerHTML = `
+                <div class="box has-text-centered">
+                    <p class="has-text-weight-semibold">${day}</p>
+                    <figure class="image is-48x48 is-inline-block">
+                        <img src="${weatherIcon}" alt="Weather icon">
+                    </figure>
+                    <div class="is-flex is-justify-content-space-between">
+                        <span>${minTemp + dailyUnits.temperature_2m_min}</span>
+                        <span>${maxTemp + dailyUnits.temperature_2m_max}</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(weeklySummary); //reference for appendChild function
+        } 
+    });
+
+    today.innerHTML = dailyData.time[0];
+    maxTemp.innerHTML = dailyData.temperature_2m_max[0] + dailyUnits.temperature_2m_max;
+    maxWindStrength.innerHTML = dailyData.wind_speed_10m_max[0] + dailyUnits.wind_speed_10m_max;
+    weatherIcon.src = getWeatherIcon(dailyData.weather_code[0])
+
+    currentTemp.innerHTML = hourlyData.temperature_2m[currentHour] + hourlyUnits.temperature_2m;
+    currentWind.innerHTML = hourlyData.wind_speed_10m[currentHour] + hourlyUnits.wind_speed_10m;
+
+
+
+
+        });
+</script>
+
+</head>
+
+<body>
+  <nav class="navbar has-background-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="/images/logo.png" alt="Logo"/>
+      </a>
+      <span class="navbar-burger has background-primary" data-target="navbarMenu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </span>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end has-background-primary">
+        <a class="navbar-item has-text-white">
+          Dashboard
+        </a>
+        <a class="navbar-item has-text-white">
+          City Focus
+        </a>
+        <a class="navbar-item has-text-white">
+          Settings
+        </a>
+      </div>
+    </div>
+  </nav>
+
+   <main class="box">
+
+    <div class="columns is-centered is-multiline has-text-centered">
+      <div class="column is-12 has-text-centered has-text-black">
+        
+<p class="is-size-1">
+  New York
+</p>
+      </div>
+
+      <div class="column is-12 has-text-centered has-text-black">
+        <p class="is-size-2">
+          <span id="today"></span>
+        </p>
+      </div>
+
+      <div class="column is-6 mb-5">
+        <figure class="image is-128x128 is-inline-block">
+          <img id="weatherIcon"></img>
+        </figure>
+      </div>
+
+      <div class="column is-6 mb-5">
+        <p class="is-size-4">
+          Right Now:
+        </p>
+        <span id="currentTemp" class="is-size-1"></span>
+        <span id="currentWind" class="is-size-1"></span>
+      </div>
+    
+      <div class="column is-6">
+        <p class="is-size-4">
+          Max Temperature:
+        </p>
+        <span id="maxTemp" class="is-size-1"></span>
+      </div>
+
+      <div class="column is-6">
+        <p class="is-size-4">
+          Max Wind Strength:
+        </p>
+        <span id="maxWindStrength" class="is-size-1"></span>
+      </div>
+    </div>
+
+
+    <div class="columns is-multiline is-mobile" id="weeklyForecast">
+      <!-- Summary of 7 Days will appear here-->
+    </div>
+
+   </main>
+
+   <footer class="footer has-background-primary has-text-white">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          (Whether)Weather - Keeping You Updated <em>*In 9 Selected Cities*</em>
+        </p>
+        <img class="image is-inline" src="/images/logo.png" alt="Logo" width="50" height="32"> 
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

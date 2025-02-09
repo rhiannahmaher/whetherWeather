@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="120"> <!-- Page refreshes every 2 minutes -->
+
+<title>(Whether)Weather</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Concert+One"> <!-- Imported Google Font -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" /> <!-- Imported Bulma stylesheet -->
+<link rel="stylesheet" href="/css/stylesheet.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/card.css">
+
+<script src="/js/bulma.js"></script>
+<script src="/js/weather_data.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/city_focus.js"></script>
+<script src="/js/settings.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+<script>
+  console.log(dayjs().format('YYYY-MM-DDTHH:mm:ss'));
+</script>
+
+
+
+  
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation Partial -->
+
+<nav class="navbar">
+
+  <div class="navbar-brand">
+
+    <a class="navbar-item" href="#">
+      <img src="/images/logo.png" alt="Logo"/>
+    </a>
+    <span class="navbar-burger" data-target="navbarMenu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </span>
+  </div>
+
+  <div id="navbarMenu" class="navbar-menu">
+      
+    <div class="navbar-end">
+      <a href="/pages/amsterdam?city={city.name}" class="navbar-item has-text-white">
+        City Focus
+      </a>
+      <a href="/index" class="navbar-item has-text-white">
+        Dashboard
+      </a>
+      <a href="/pages/settings" class="navbar-item has-text-white">
+        Settings
+      </a>
+    </div>
+  </div>
+
+</nav>
+
+  <main id="container" class="columns is-centered is-multiline box">
+
+    <div class="column is-12 has-text-centered has-text-black">
+      <p id="dashboard" class="is-size-1">
+        Dashboard
+      </p>
+    </div>
+
+    <div id="cardContainer" class="columns is-centered is-multiline">
+      <!-- 9 city cards are created and pulled in here -->
+    </div>
+
+  </main>
+
+  <footer>
+      <div class="container">
+
+  <div class="has-text-centered">
+    <p>
+      (Whether)Weather - Keeping You Updated <em>*In 9 Selected Cities*</em>
+    </p>
+    <img id="footer-image" class="image is-inline" src="/images/logo.png" alt="Logo"> 
+ </div>
+ 
+</div>
+  </footer>
+  
+</body>
+</html>

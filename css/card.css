@@ -1,0 +1,35 @@
+/*
+CSS styling for card components
+*/
+
+.card-header {
+  background-color: deepskyblue;
+}
+
+.card-content {
+  background-color: lightblue;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+.card-footer-item.button {
+  background-color: orange;
+  font-size: large;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+#container {
+  background-color: whitesmoke;
+}
+
+#focus-container {
+  margin-top: 0;
+  background-color: orange;
+}
+
+.card {
+  background-color: white;
+  margin: 0;
+}
